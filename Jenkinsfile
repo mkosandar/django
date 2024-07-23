@@ -42,7 +42,7 @@ pipeline {
         stage("snyk") {
             steps {
                 script{
-                    snykSecurity failOnIssues: false, snykInstallation: 'snyk', snykTokenId: 'snyk-token'
+                    snykSecurity additionalArguments: '--file=requirements.txt' failOnIssues: false, snykInstallation: 'snyk', snykTokenId: 'snyk-token'
                 }
             }
         }
