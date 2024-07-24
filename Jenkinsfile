@@ -5,7 +5,7 @@ pipeline {
         //jdk "JDK15"
         maven "mvn 3.9.6"
         dockerTool "docker"
-        NodeJS "nodejs"
+        nodejs "nodejs"
     }
     environment {     
     DOCKERHUB_CREDENTIALS= credentials('dockerHub-login')
