@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script{
                     sh 'pip install -r requirements.txt '
-                    sh 'npn install'
+                    sh 'npm install'
                 }
             }
         }
