@@ -41,14 +41,14 @@ pipeline {
                 }
             }
         }
-        /*stage("snyk") {
+        stage("snyk") {
             steps {
                 script{
-                    snykSecurity additionalArguments: '--file=requirements.txt --debug', failOnIssues: false, snykInstallation: 'snyk', snykTokenId: 'snyk-token'
+                    snykSecurity additionalArguments: '--file=requirements.txt', failOnIssues: false, snykInstallation: 'snyk', snykTokenId: 'snyk-token'
                 }
             }
         }
-        stage('SonarQube analysis') {
+        /*stage('SonarQube analysis') {
             steps {
                 script {
                     def scannerHome = tool 'sonarqube-scanner';
