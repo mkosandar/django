@@ -78,7 +78,7 @@ pipeline {
         stage('Secret Detection') {
             steps {
                 script {
-                    //sh "https://github.com/mkosandar/django.git --json --no-update --fial "
+                    sh "trufflehog --entropy=True . "
                     sh " docker run --rm hysnsec/trufflehog git https://github.com/mkosandar/django.git --json |tee trufflehog-output.json"
                     //def report =readFile('trufflehog-output.json')
                     //if (report.contains('"found": true')) {
