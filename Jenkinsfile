@@ -78,7 +78,7 @@ pipeline {
         stage('Secret Detection') {
             steps {
                 script {
-                    def truffleStatus = sh(script: "trufflehog git https://github.com/mkosandar/django.git  --no-update", returnStatus: true)
+                    def truffleStatus = sh(script: "trufflehog git https://github.com/mkosandar/django.git --no-update --json |tee trufflehog-output.json", returnStatus: true)
                     if (truffleStatus != 0 ) {
                         error "Secrets detected"
                     }
