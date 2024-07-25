@@ -78,14 +78,11 @@ pipeline {
         stage('Secret Detection') {
             steps {
                 script {
-                    sh 'trufflehog --json . > trufflehog_report.json'
-                    sh " docker run --rm hysnsec/trufflehog git https://github.com/mkosandar/django.git --json |tee trufflehog-output.json"
-                    //def report =readFile('trufflehog-output.json')
-                    //if (report.contains('"found": true')) {
-                    //    error "TruffleHog found secrets in the repository. Failing the build."
-                    //} else {
-                    //    echo "No secrets found by TruffleHog."
-                    //}
+                    def truffleStatus = sh(script: "trufflehog --regex --entropy=True ./", returnStatus: true)
+                    def detectSecretsStatus = sh(script: "detect-secrets scan", returnStatus: true)
+                    if (truffleStatus != 0 || detectSecretsStatus != 0) {
+                        error "Secrets detected"
+                    }
                 }
             }
         }
