@@ -182,4 +182,9 @@ pipeline {
             }
         }*/
     }
+    post { 
+        always { 
+            cleanWs()
+        }
+    }
 }
